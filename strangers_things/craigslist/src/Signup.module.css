@@ -25,9 +25,11 @@
    font-size: xx-large;
 }
 .label{
+    
     display: flex;
     justify-content: center;
-   font-size: x-large;
+   font-size: large;
+   font-weight: bold;
 }
 .input1{
     margin-left: -6px;
@@ -36,6 +38,6 @@
     font-size: large;
     margin-top: 10px;
 }
-.link{
-    text-decoration: none;
+.loginbtn{
+    text-decoration:none;
 }
