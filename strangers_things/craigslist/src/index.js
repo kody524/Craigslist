@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
 import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import './index.css';
+import Login from './Login';
 
 import Home from './Home';
 import Posts from './Posts';
@@ -14,8 +15,8 @@ const[user,setUser]=useState('');
     return(
       <BrowserRouter>
         <Routes>
-        <Route path="/" element={<Home/>}></Route>
-          <Route path='/' element={<Home />}></Route>
+        <Route path="/" element={<Login />}></Route>
+          <Route path='/home' element={<Home />}></Route>
           <Route path="posts" element={<Posts />}></Route>
           <Route path="profile" element={<Profile/>}></Route>
       </Routes>
