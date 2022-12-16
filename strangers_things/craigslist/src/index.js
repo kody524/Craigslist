@@ -4,13 +4,12 @@ import {BrowserRouter,Routes,Route} from 'react-router-dom'
 import './index.css';
 import Login from './Login';
 import Signup from './Signup';
-
 import Home from './Home';
 import Posts from './Posts';
 import Profile from './Profile';
 
 function Main() {
-const[user,setUser]=useState('');
+
 
 
     return(
