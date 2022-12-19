@@ -1,17 +1,14 @@
 import Navbar from "./Navbar"
 import React,{useEffect,useState} from "react";
 import styles from "./Posts.module.css"
-import { json } from "react-router-dom";
+import { json, Link } from "react-router-dom";
+import CreatePost from "./CreatePost";
 
 
 
 
-function Posts(){
-const TOKEN = localStorage.getItem('key')
+function Posts({userToken}){
 const[posts,setPosts]=useState([]) 
-const[description,setDescription]=useState("");
-const[title,setTitle]=useState("")  
-const[price,setPrice]=useState("")
 
 
 async function fetchPosts(){
@@ -31,13 +28,16 @@ async function fetchPosts(){
    
         
 }
+
+
     useEffect(()=>{
         fetchPosts()
-    },[posts])
+    },[])
     return(<>
         <Navbar />
         <div>
             <h1>Posts</h1>
+            <Link to='/create'><button>Create Post</button></Link>
             {
        posts.map(post=>{
        
@@ -52,7 +52,7 @@ async function fetchPosts(){
         {post.willDeliver ? <h6 className={styles.deliver}>Will Deliver:Yes</h6>:<h6 className={styles.deliver}>Will Deliver:No</h6>}
         <h6 className={styles.location}>Location:{post.location}</h6>
         </div>
-        <button>delete</button>
+        <button>Delete</button>
         </section>
         
             )

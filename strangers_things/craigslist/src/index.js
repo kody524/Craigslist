@@ -6,6 +6,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
 import Posts from './Posts';
+import CreatePost from './CreatePost';
 import Profile from './Profile';
 import Logout from './Logout';
 import IsLoading from './IsLoading';
@@ -23,7 +24,8 @@ function Main() {
         <Routes>
         <Route path="/" element={<Login username={username} password={password} success={success} setSuccess={setSuccess} setUsername={setUsername} setPassword={setPassword} setUserSession={setUserSession} setUserToken={setUserToken}/>}></Route>
           <Route path='/home' element={<Home username={username} usersession={usersession} />}></Route>
-          <Route path="/posts" element={<Posts />}></Route>
+          <Route path="/posts" element={<Posts userToken={userToken}/>}></Route>
+          <Route path='/create' element={<CreatePost userToken={userToken}/>}></Route>
           <Route path="/profile" element={<Profile/>}></Route>
           <Route path='/signup' element={<Signup />}></Route>
           <Route path='/logout' element={<Logout/>}></Route>
