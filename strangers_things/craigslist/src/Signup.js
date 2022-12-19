@@ -6,9 +6,7 @@ import styles from "./Signup.module.css";
 
 function Signup() {
   const [username, setUsername] = useState("");
-
   const [password, setPassword] = useState("");
-  
   const [success, setSuccess] = useState(false);
 
   async function PostUser() {
@@ -30,11 +28,11 @@ function Signup() {
       );
 
       const json = await response.json();
-      const TOKENKEY = json.data.token
+      const TOKENKEY = json.data.token;
       console.log(json);
       if (json.success) {
         setSuccess(true);
-        localStorage.setItem('key',TOKENKEY)
+        localStorage.setItem("key", TOKENKEY);
       } else {
         alert(json.error.message);
       }
@@ -43,7 +41,6 @@ function Signup() {
     }
   }
   function handleSubmit() {
-   
     PostUser();
   }
 

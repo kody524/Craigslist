@@ -2,17 +2,16 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Link, Route } from "react-router-dom";
+import { json, Link, Route } from "react-router-dom";
 import Signup from "./Signup";
 import Home from "./Home";
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [success, setSuccess] = useState(false);
+function Login({success,username,password,setSuccess,setUsername,setPassword,setUserSession,setUserToken}) {
+ 
 
   //  make api request
   async function fetchLogin() {
+   
     try {
       const response = await fetch( 
         "https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/users/login",
@@ -30,12 +29,16 @@ function Login() {
         }
       );
       const json = await response.json();
-      const TOKENKEY = json.data.token
       console.log(json);
+     
 
+     
       if (json.success) {
-        setSuccess(true);
-        localStorage.setItem('key',TOKENKEY)
+        setSuccess(true)
+        setUserSession(username)
+        setUserToken(json.data.token)
+      
+       
       } else {
         alert(json.error.message);
       }
@@ -55,6 +58,7 @@ function Login() {
             <TextField
               onChange={(e) => {
                 setUsername(e.target.value);
+               
               }}
               required
               id="outlined-required"
@@ -79,6 +83,8 @@ function Login() {
           <Button
             onClick={() => {
               fetchLogin();
+             
+              
              
             }}
             variant="contained"

@@ -1,11 +1,12 @@
 import Navbar from "./Navbar"
 import styles from './Home.module.css'
 
-function Home(){
+function Home({usersession}){
+   
     return(<>
         <Navbar />
         <div className={styles.head}>
-            <h1>Welcome to the Home Page</h1>
+            <h1>Welcome {usersession}</h1>
         </div>
    </> )
 }
