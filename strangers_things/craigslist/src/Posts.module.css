@@ -1,13 +1,14 @@
 .body{
     display: flex;
     justify-content: center;
-    padding-top: 10px;  
+    padding-top: 10px;      
 }
+
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: lightgrey;
+    background-color: lightblue;
     height: 200px;
     width: 1000px;
     border: 1px;
@@ -21,7 +22,7 @@
 }
 .price{
     font-size: 25px;
-    padding-top: 30px;
+    padding-top: 20px;
    
 }
 .deliver{
@@ -31,4 +32,7 @@
 }
 .location{
     font-size: 20px;
+}
+.btn{
+    margin-top: 5px;
 }

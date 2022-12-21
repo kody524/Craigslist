@@ -47,7 +47,7 @@ async function fetchPosts(){
         <Navbar />
         <div>
             <h1>Posts</h1>
-            <Link to='/create'><button>Create Post</button></Link>
+            <Link to='/create'><button className={styles.createbtn}>Create Post</button></Link>
             {
        posts.map(post=>{
       
@@ -61,8 +61,10 @@ async function fetchPosts(){
         <h3 className={styles.price}>Price: {post.price}</h3>
         {post.willDeliver ? <h6 className={styles.deliver}>Will Deliver:Yes</h6>:<h6 className={styles.deliver}>Will Deliver:No</h6>}
         <h6 className={styles.location}>Location:{post.location}</h6>
+        <span><button className={styles.btn}>Edit</button> 
+        <button className={styles.btn}>Delete</button></span>
+       
         </div>
-        <button>Delete</button>
         </section>
         
             )
