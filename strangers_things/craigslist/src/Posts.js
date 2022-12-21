@@ -1,27 +1,35 @@
 import Navbar from "./Navbar"
 import React,{useEffect,useState} from "react";
 import styles from "./Posts.module.css"
-import { json, Link } from "react-router-dom";
+import { json, Link,Navigate } from "react-router-dom";
 import CreatePost from "./CreatePost";
 
 
 
 
-function Posts({userToken}){
+function Posts(){
+    const token = localStorage.getItem('token')
 const[posts,setPosts]=useState([]) 
 
 
+
 async function fetchPosts(){
-    
+
     try{
     const response = await fetch(
-        `https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts`)
+        `https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts`,{
+        method:"GET",
+        headers:{
+          'Authorization':`Bearer ${token}`
+        }
+    })
     
       
   
       const json = await response.json();
       console.log(json);
       setPosts(json.data.posts)
+     
     }catch(e){
         console.log(e)
     }
@@ -32,6 +40,8 @@ async function fetchPosts(){
 
     useEffect(()=>{
         fetchPosts()
+      
+    
     },[])
     return(<>
         <Navbar />
@@ -40,7 +50,7 @@ async function fetchPosts(){
             <Link to='/create'><button>Create Post</button></Link>
             {
        posts.map(post=>{
-       
+      
         if(post.isAuthor){
             
             return(

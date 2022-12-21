@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styles from "./Login.module.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { json, Link, Route } from "react-router-dom";
+import Navbar from "./Navbar";
+import { json, Link, Route,Navigate } from "react-router-dom";
 import Signup from "./Signup";
 import Home from "./Home";
 
-function Login({success,username,password,setSuccess,setUsername,setPassword,setUserSession,setUserToken}) {
+function Login({success,username,password,setSuccess,setUsername,setPassword}) {
  
 
   //  make api request
@@ -29,14 +30,17 @@ function Login({success,username,password,setSuccess,setUsername,setPassword,set
         }
       );
       const json = await response.json();
+ 
       console.log(json);
      
-
+ 
      
       if (json.success) {
         setSuccess(true)
-        setUserSession(username)
-        setUserToken(json.data.token)
+console.log(json.data.token)
+        localStorage.setItem('key',username)
+        localStorage.setItem('token',json.data.token)
+       
       
        
       } else {
@@ -48,7 +52,7 @@ function Login({success,username,password,setSuccess,setUsername,setPassword,set
   }
 
   return (
-    <>{success ? <Home/>:
+    <>{success ? <Navigate to='/home'></Navigate>:
       <div className={styles.main}>
         <div className={styles.container}>
           <h2 className={styles.title}>Login</h2>
