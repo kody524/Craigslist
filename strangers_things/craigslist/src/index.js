@@ -6,6 +6,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Home from './Home';
 import Posts from './Posts';
+import SinglePost from './SinglePost';
 import CreatePost from './CreatePost';
 import Profile from './Profile';
 import Logout from './Logout';

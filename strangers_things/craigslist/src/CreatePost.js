@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import style from './CreatePost.module.css'
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { json, Navigate } from 'react-router-dom';
+import { json, Link, Navigate } from 'react-router-dom';
 import Navbar from './Navbar';
 
 function CreatePost(){
@@ -102,10 +102,11 @@ if(json.success){
           value={deliver}
         />
       </label>
+      <Link to='/posts'>
       <Button
         onClick={() => {
           create()
-          { <Navigate to='/posts'></Navigate>}
+           
          
         }}
         variant="contained"
@@ -113,7 +114,7 @@ if(json.success){
       >
         Submit
       </Button>
-    
+      </Link>
       
     </div>
   </div>

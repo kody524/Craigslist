@@ -3,11 +3,16 @@ import Navbar from "./Navbar";
 import Login from "./Login";
 
 function Logout(){
+   
+const clear=()=>{
+    localStorage.clear()
+
+ }
     
-    localStorage.removeItem('key')
-    localStorage.removeItem('token')
     return(
+        clear(),
         <Navigate to='/login'/>
+       
     )
 }
 
