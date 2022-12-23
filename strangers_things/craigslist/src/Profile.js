@@ -17,7 +17,7 @@ async function fetchMe(){
         }
    })
    const response = await data.json()
-   console.log(response.data.messages[0].content)
+   
   
   
    setPosts(response.data.posts)

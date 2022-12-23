@@ -39,7 +39,7 @@ console.log(response)
 
     return(
         <>
-            <Navbar/>
+          
             <div className={style.main}>
             <div className={style.container}>
               <h2 className={style.title}>Edit Post</h2>
@@ -91,6 +91,16 @@ console.log(response)
                   placeholder={location}
                 />
               </label>
+              
+              <Button onClick={()=>{
+                setEdit(false)
+              }}
+                variant="contained"
+                className={style.btn}
+              >
+                Back
+              </Button>
+              
               <Link to='/posts'>
               <Button
                 onClick={() => {

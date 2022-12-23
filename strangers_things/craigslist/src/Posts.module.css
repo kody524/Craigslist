@@ -1,5 +1,6 @@
 .body{
     display: flex;
+    flex-direction: row;
     justify-content: center;
     padding-top: 10px;      
 }
@@ -35,4 +36,10 @@
 }
 .btn{
     margin-top: 5px;
+}
+.create_btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

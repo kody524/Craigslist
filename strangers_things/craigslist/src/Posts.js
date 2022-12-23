@@ -2,9 +2,9 @@ import Navbar from "./Navbar";
 import React, { useEffect, useState } from "react";
 import styles from "./Posts.module.css";
 import { json, Link, Navigate } from "react-router-dom";
-import CreatePost from "./CreatePost";
 import SinglePost from "./SinglePost";
 import EditPost from "./EditPost";
+import Button from "@mui/material/Button";
 
 function Posts({key,singlePost,title,price,description,location,setSinglePost,edit,setEdit,setTitle,setDescription,setPrice,setLocation,setKey}) {
   const token = localStorage.getItem("token");
@@ -55,7 +55,7 @@ function Posts({key,singlePost,title,price,description,location,setSinglePost,ed
   }, []);
   return (
     <>
-      <Navbar />
+      <Navbar setSingle={setSinglePost} setEdit={setEdit}/>
       {singlePost ? (
         <SinglePost
           key={key}
@@ -76,7 +76,7 @@ function Posts({key,singlePost,title,price,description,location,setSinglePost,ed
           <h1>Posts</h1>
 
           <Link to="/create">
-            <button>Create Post</button>
+            <Button variant="contained" className={styles.create_btn}>Create Post</Button>
           </Link>
           {posts.map((post) => {
             if (post.isAuthor) {
