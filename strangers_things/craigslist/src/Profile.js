@@ -1,11 +1,12 @@
 import Navbar from "./Navbar";
 import React,{useEffect,useState} from "react";
 import styles from "./Profile.module.css"
-
-function Profile(){
+import EditPost from "./EditPost";
+function Profile({key,setKey,title,setTitle,price,setPrice,description,setDescription,location,setLocation,edit,setEdit}){
 const token = localStorage.getItem('token');
 const[posts,setPosts]=useState([])
 const[messages,setMessages]=useState([])
+
 
 async function fetchMe(){
    try{
@@ -16,7 +17,7 @@ async function fetchMe(){
         }
    })
    const response = await data.json()
-   console.log(response)
+   console.log(response.data.messages[0].content)
   
   
    setPosts(response.data.posts)
@@ -29,13 +30,23 @@ async function fetchMe(){
 useEffect(()=>{
     fetchMe()
 },[])
-    return(<>
+    return(
+    <>
+    {edit ? <EditPost   id={key}
+      title={title}
+      price={price}
+      description={description}
+      location={location}
+      setEdit={setEdit} /> :<>
         <Navbar />
+        
         <div>
             <h1>Profile</h1>
+            
             <h2>My Posts</h2>
             {
                 posts.map(post=>{
+                    if(post.active){
                     return(<>
                         <section key={post._id} className={styles.body}>
     <div className={styles.container}>
@@ -43,9 +54,18 @@ useEffect(()=>{
         <h3 className={styles.price}>Price: {post.price}</h3>
         <h6 className={styles.deliver}>Will Deliver:{post.willDeliver}</h6>
         <h6 className={styles.location}>Location:{post.location}</h6>
+        <button>delete</button>
+        <button onClick={()=>{
+            setEdit(true);
+            setTitle(post.title);
+            setDescription(post.description);
+            setPrice(post.price);
+            setLocation(post.location);
+            setKey(post._id);
+        }}>edit</button>
         </div>
         </section>
-                        </> )
+                        </> )}
                 })
             }
             <h1>My Messages</h1>
@@ -54,8 +74,8 @@ useEffect(()=>{
                       <h1>{message}</h1>
                 })
               }
-        </div>
-   </> )
+        </div></>}
+</> )
 }
 
 export default Profile
