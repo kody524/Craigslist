@@ -10,7 +10,6 @@ import Home from "./Home";
 function Login({success,username,password,setSuccess,setUsername,setPassword}) {
  
 
-  //  make api request
   async function fetchLogin() {
    
     try {

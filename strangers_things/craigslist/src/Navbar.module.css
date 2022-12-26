@@ -5,7 +5,7 @@
 .navbar{
     width: 100%;
     height: 60px;
-    background-color:green;
+    background-color:#4682B4;
 }
 .nav > ul{
     display: flex;
@@ -16,13 +16,17 @@
     color: white;
     
 }
+
 .navbarlinks {
 text-decoration: none;
-color:grey
+color:white
+}
+.navbarlinks:hover{
+    color: red;
 }
 .title {
     font-size: larger;
     text-decoration: none;
-    color:grey
+    color:white
 }
 

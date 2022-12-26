@@ -4,17 +4,18 @@ import {Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import style from './CreatePost.module.css'
-function EditPost({title,description,price,location,id,setEdit}){
+function EditPost({title,description,price,location,ID,setEdit}){
   const TOKEN = localStorage.getItem('token')
-  
+ 
 const[updateTitle,setUpdateTitle]=useState('')
 const[updateDescription,setUpdateDescription]=useState('')
 const[updatePrice,setUpdatePrice]=useState('')
 const[updateLocation,setUpdateLocation]=useState('')
 async function patch(){
-console.log(id)
+
     try{
-        const data = await fetch(`http://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts/${id}`, {
+      console.log(ID)
+        const data = await fetch(`http://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts/${ID}`, {
             method: "PATCH",
             headers: {
               'Content-Type': 'application/json',
