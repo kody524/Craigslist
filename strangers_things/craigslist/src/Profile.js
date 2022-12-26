@@ -10,6 +10,7 @@ const[posts,setPosts]=useState([])
 const[messages,setMessages]=useState([])
 
 
+
 async function fetchMe(){
    try{
     const data = await fetch('https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/users/me', {
@@ -73,20 +74,34 @@ useEffect(()=>{
                         </> )}
                 })
             }
-            <h1>Sent Messages</h1>
+          
+            <h1>Messages</h1>
               {
                 messages.map(message=>{
                   if(message.fromUser.username==="ass"){
-                    return(<div className={styles.sent}>
+                    return(<>
                       
+                      <section key={message._id} className={styles.body}>
+                    <div className={styles.container}>
+                    <h1 className={styles.inout}>Outgoing Message</h1>
                       <h2>About:{message.post.title}</h2>
                       <h3>Message:{message.content}</h3>
-                    </div>)
+                    </div>
+                    </section>
+                    </>)
                   }else{
                     return(<>
-                      <h2>From:{message.fromUser.username}</h2>
-                      <h3>{message.content}</h3>
-                   </> )
+                      
+                      <section key={message._id} className={styles.body}>
+                    <div className={styles.container}>
+                    <h1 className={styles.inout}>Incoming Message</h1>
+                      <h1>From User:{message.fromUser.username}</h1>
+                      <h2>About:{message.post.title}</h2>
+                      <h3>Message:{message.content}</h3>
+                    </div>
+                    </section>
+                    </>)
+                   
                   }
                  
                      

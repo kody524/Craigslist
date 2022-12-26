@@ -69,15 +69,16 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
             if (post.isAuthor) {
               return (
                 <section key={post._id} className={styles.body}>
-                  <div className={styles.container}>
-                  <h6>{post.author.username}</h6>
-                    <h1 className={styles.title}>{post.title}</h1>
-                    <h3 className={styles.price}>Price: {post.price}</h3>
-                    
-                    <h6 className={styles.location}>
-                      Location:{post.location}
-                      
-                    </h6>
+                <div className={styles.container}>
+                  <h1 className={styles.title}>{post.title}</h1>
+                  <h3>User:Your Post</h3>
+                  <h3 className={styles.price}>Price: {post.price}</h3>
+                  <h6 className={styles.deliver}>
+                    Will Deliver:{post.willDeliver}
+                  </h6>
+                  <h6 className={styles.location}>
+                    Location:{post.location}
+                  </h6>
                     <span>
                       <button onClick={()=>{
                         setID(post._id);
@@ -101,8 +102,8 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
               return (
                 <section key={post._id} className={styles.body}>
                   <div className={styles.container}>
-                  <h6>{post.author.username}</h6>
                     <h1 className={styles.title}>{post.title}</h1>
+                    <h3>User:{post.author.username}</h3>
                     <h3 className={styles.price}>Price: {post.price}</h3>
                     <h6 className={styles.deliver}>
                       Will Deliver:{post.willDeliver}
@@ -110,7 +111,7 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
                     <h6 className={styles.location}>
                       Location:{post.location}
                     </h6>
-                    <button
+                    <button className={styles.btn}
                       onClick={() => {
                         setSinglePost(true);
                         setTitle(post.title);
