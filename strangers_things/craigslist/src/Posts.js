@@ -2,44 +2,41 @@ import Navbar from "./Navbar";
 import { deletePost } from "./allFucntions";
 import React, { useEffect, useState } from "react";
 import styles from "./Posts.module.css";
-import { json, Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SinglePost from "./SinglePost";
 import EditPost from "./EditPost";
+import { fetchPosts } from "./allFucntions";
 import Button from "@mui/material/Button";
 
-function Posts({ID,singlePost,title,price,description,location,setSinglePost,edit,setEdit,setTitle,setDescription,setPrice,setLocation,setID,messageContent,setMessageContent}) {
+function Posts({
+  ID,
+  singlePost,
+  title,
+  price,
+  description,
+  location,
+  setSinglePost,
+  edit,
+  setEdit,
+  setTitle,
+  setDescription,
+  setPrice,
+  setLocation,
+  setID,
+  messageContent,
+  setMessageContent,
+}) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
 
-
-  async function fetchPosts() {
-    try {
-      const response = await fetch(
-        `https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      const json = await response.json();
-      console.log(json);
-      setPosts(json.data.posts);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-
+ 
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts(token,setPosts);
   }, []);
   return (
     <>
-      <Navbar setSingle={setSinglePost} setEdit={setEdit}/>
+      <Navbar setSingle={setSinglePost} setEdit={setEdit} />
       {singlePost ? (
         <SinglePost
           ID={ID}
@@ -51,50 +48,64 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
           messageContent={messageContent}
           setMessageContent={setMessageContent}
         />
-      ) :edit ? <EditPost 
-      ID={ID}
-      title={title}
-      price={price}
-      description={description}
-      location={location}
-      setEdit={setEdit}/>: (
+      ) : edit ? (
+        <EditPost
+          ID={ID}
+          title={title}
+          price={price}
+          description={description}
+          location={location}
+          setEdit={setEdit}
+        />
+      ) : (
         <div>
-          <h1>Posts</h1>
-<div className={styles.createcontainer}>
-          <Link to="/create">
-            <Button variant="contained" className={styles.create}>Create Post</Button>
-          </Link>
+          <h1 className={styles.header}>Posts</h1>
+          <div className={styles.createcontainer}>
+            <Link to="/create" style={{textDecoration: 'none'}}>
+              <Button variant="contained" className={styles.btns}>
+                Create Post
+              </Button>
+            </Link>
           </div>
           {posts.map((post) => {
             if (post.isAuthor) {
               return (
                 <section key={post._id} className={styles.body}>
-                <div className={styles.container}>
-                  <h1 className={styles.title}>{post.title}</h1>
-                  <h3>User:Your Post</h3>
-                  <h3 className={styles.price}>Price: {post.price}</h3>
-                  <h6 className={styles.deliver}>
-                    Will Deliver:{post.willDeliver}
-                  </h6>
-                  <h6 className={styles.location}>
-                    Location:{post.location}
-                  </h6>
+                  <div className={styles.container}>
+                    <h1 className={styles.title}>{post.title}</h1>
+                    <h3>User:Your Post</h3>
+                    <h3>{post.description}</h3>
+                    <h3 className={styles.price}>Price: {post.price}</h3>
+                    <h6 className={styles.location}>
+                      Location:{post.location}
+                    </h6>
+                    <div className={styles.btnscontainer}>
                     <span>
-                      <button onClick={()=>{
-                        setID(post._id);
-                        setEdit(true);
-                        setTitle(post.title);
-                        setDescription(post.description);
-                        setPrice(post.price);
-                        setLocation(post.location);
-                        
-                        
-                      }}>Edit</button>
-                      <button onClick={()=>{
-                        deletePost(token,post._id)
-                        
-                      }}>Delete</button>
+                      <Button 
+                      className={styles.btns}
+                      variant="contained"
+                        onClick={() => {
+                          setID(post._id);
+                          setEdit(true);
+                          setTitle(post.title);
+                          setDescription(post.description);
+                          setPrice(post.price);
+                          setLocation(post.location);
+                        }}
+                      >
+                        Edit
+                      </Button>
+                      <Button
+                      variant="contained"
+                      className={styles.btns}
+                        onClick={() => {
+                          deletePost(token, post._id);
+                        }}
+                      >
+                        Delete
+                      </Button>
                     </span>
+                    </div>
                   </div>
                 </section>
               );
@@ -104,14 +115,15 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
                   <div className={styles.container}>
                     <h1 className={styles.title}>{post.title}</h1>
                     <h3>User:{post.author.username}</h3>
+                    <h3>Description: {post.description}</h3>
                     <h3 className={styles.price}>Price: {post.price}</h3>
-                    <h6 className={styles.deliver}>
-                      Will Deliver:{post.willDeliver}
-                    </h6>
                     <h6 className={styles.location}>
                       Location:{post.location}
                     </h6>
-                    <button className={styles.btn}
+                    <div className={styles.btnscontainer}>
+                    <Button
+                    variant="contained"
+                      className={styles.btns}
                       onClick={() => {
                         setSinglePost(true);
                         setTitle(post.title);
@@ -122,7 +134,8 @@ function Posts({ID,singlePost,title,price,description,location,setSinglePost,edi
                       }}
                     >
                       View
-                    </button>
+                    </Button>
+                    </div>
                   </div>
                 </section>
               );

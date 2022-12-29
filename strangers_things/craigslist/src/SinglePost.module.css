@@ -1,26 +1,31 @@
-.body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 550px;
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
 }
 
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    height: 400px;
-    width: 600px;
-    background-color: #4682B4;
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 400px;
+  width: 600px;
+  background-color: #4682b4;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.title{
-    font-size: 30px;
-    text-decoration: underline;
+.title {
+  font-size: 30px;
+  text-decoration: underline;
 }
-.description{
-    font-size: 20px;
+.description {
+  font-size: 20px;
 }
-.price{
-    font-size: 30px;
+.price {
+  font-size: 30px;
 }

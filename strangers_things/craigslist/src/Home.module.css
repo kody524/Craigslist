@@ -1,4 +1,14 @@
-
-h1{
-text-align: center;
+div{
+    
+}
+.head {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgrey;
+  height: 700px;
+}
+h1 {
+  text-align: center;
 }

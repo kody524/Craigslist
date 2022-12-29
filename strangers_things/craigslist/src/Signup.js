@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { PostUser } from "./allFucntions";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import styles from "./Signup.module.css";
@@ -9,39 +10,9 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
 
-  async function PostUser() {
-    try {
-      const response = await fetch(
-        "https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/users/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            user: {
-              username: username,
-              password: password,
-            },
-          }),
-        }
-      );
 
-      const json = await response.json();
-      const TOKENKEY = json.data.token;
-      console.log(json);
-      if (json.success) {
-        setSuccess(true);
-        localStorage.setItem("key", TOKENKEY);
-      } else {
-        alert(json.error.message);
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
   function handleSubmit() {
-    PostUser();
+    PostUser(username,password,setSuccess);
   }
 
   return (
@@ -83,7 +54,7 @@ function Signup() {
           Sign Up
         </Button>
         {success ? (
-          <Link className={styles.loginbtn} to="/">
+          <Link className={styles.loginbtn} to="/" style={{textDecoration: 'none'}}>
             <Button>Go Login</Button>
           </Link>
         ) : null}

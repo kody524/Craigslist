@@ -1,56 +1,62 @@
-.body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 10px;  
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  background-color: lightgrey;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    background-color: #4682B4;
-    height: 200px;
-    width: 1000px;
-    border: 1px;
-    border-style: solid;
-    border-color: black;
-    border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.header{
+   background-color: lightgrey;
 }
-h2{
-    display: flex;
-    justify-content: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    
+.container {
+  color: #FBFAF5;
+  display: flex;
+  flex-direction: column;
+  background-color: #4682b4;
+  height: 200px;
+  width: 1000px;
+  border: 1px;
+  border-style: solid;
+  border-color: black;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
-.title{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-   
+h2 {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
-.price{
-    font-size: 25px;
-    
-   
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
 }
-.deliver{
-    font-size: 20px;
-    
+.price {
+  font-size: 20px;
+}
+.deliver {
+  font-size: 20px;
+}
+.location {
+  font-size: 20px;
+}
+.btn {
+  display: flex;
 
+  align-items: center;
+  justify-content: center;
+  width: 50px;
 }
-.location{
-    font-size: 20px;
+.inout {
+  text-decoration: underline;
 }
-.btn{
-    display: flex;
-    
-    align-items: center;
-justify-content: center;
-width: 50px;
-   
+.btnscontainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.inout{
-    text-decoration: underline;
+.btns{
+  height: 25px;
 }
