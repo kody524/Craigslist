@@ -122,9 +122,13 @@ function Profile({
                     </section>
                   </>
                 );
-              } else {
-                return (
+              }
+            })}{
+              messages.map((message)=>{
+                if(message.fromUser.username !== "ass"){
+                      return (
                   <>
+                  
                     <section key={message.post._id} className={styles.body}>
                       <div className={styles.container}>
                         <h1 className={styles.inout}>Incoming Message</h1>
@@ -149,8 +153,9 @@ function Profile({
                     </section>
                   </>
                 );
-              }
-            })}
+                }
+              })
+            }
           </div>
         </>
       )}
