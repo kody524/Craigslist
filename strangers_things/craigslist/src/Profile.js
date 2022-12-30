@@ -23,6 +23,8 @@ function Profile({
   messageContent,
   setMessageContent,
   ID,
+  reply,
+  setReply
 }) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
@@ -53,6 +55,7 @@ function Profile({
           setSingle={setSinglePost}
           messageContent={messageContent}
           setMessageContent={setMessageContent}
+          reply={reply}
         />
       ) : (
         <>
@@ -60,8 +63,7 @@ function Profile({
 
           <div>
             <h1 className={styles.header}>Profile</h1>
-
-            <h2 className={styles.header}>My Posts</h2>
+            <h1 className={styles.header}>My Posts</h1>
             {posts.map((post) => {
               if (post.active) {
                 return (
@@ -108,14 +110,13 @@ function Profile({
               }
             })}
 
-            <h1 className={styles.header}>Messages</h1>
+            <h1 className={styles.header}>Outgoing Messages</h1>
             {messages.map((message) => {
               if (message.fromUser.username === "ass") {
                 return (
                   <>
                     <section key={message._id} className={styles.body}>
                       <div className={styles.container}>
-                        <h1 className={styles.inout}>Outgoing Message</h1>
                         <h2>About:{message.post.title}</h2>
                         <h3>Message:{message.content}</h3>
                       </div>
@@ -123,7 +124,9 @@ function Profile({
                   </>
                 );
               }
-            })}{
+            })}
+            <h1 className={styles.header}>Incoming Messages</h1>
+            {
               messages.map((message)=>{
                 if(message.fromUser.username !== "ass"){
                       return (
@@ -131,7 +134,6 @@ function Profile({
                   
                     <section key={message.post._id} className={styles.body}>
                       <div className={styles.container}>
-                        <h1 className={styles.inout}>Incoming Message</h1>
                         <h1>From User:{message.fromUser.username}</h1>
                         <h2>About:{message.post.title}</h2>
                         <h3>Message:{message.content}</h3>
@@ -140,6 +142,7 @@ function Profile({
                         className={styles.btns}
                         variant="contained"
                           onClick={() => {
+                            setReply(true)
                             setSinglePost(true);
                             setKey(message.post._id)
                             setTitle(message.post.title);

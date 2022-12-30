@@ -6,6 +6,7 @@
 }
 
 .container {
+  color: #FBFAF5;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -21,7 +22,7 @@
 }
 .title {
   font-size: 30px;
-  text-decoration: underline;
+  
 }
 .description {
   font-size: 20px;

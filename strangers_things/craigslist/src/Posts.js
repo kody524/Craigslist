@@ -25,6 +25,7 @@ function Posts({
   setID,
   messageContent,
   setMessageContent,
+  reply
 }) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
@@ -47,6 +48,7 @@ function Posts({
           setSingle={setSinglePost}
           messageContent={messageContent}
           setMessageContent={setMessageContent}
+          reply={reply}
         />
       ) : edit ? (
         <EditPost
@@ -74,7 +76,7 @@ function Posts({
                   <div className={styles.container}>
                     <h1 className={styles.title}>{post.title}</h1>
                     <h3>User:Your Post</h3>
-                    <h3>{post.description}</h3>
+                    <h3>Description: {post.description}</h3>
                     <h3 className={styles.price}>Price: {post.price}</h3>
                     <h6 className={styles.location}>
                       Location:{post.location}

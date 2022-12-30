@@ -10,7 +10,7 @@ function CreatePost() {
   const [description, setDescription] = useState("");
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [deliver, setDeliver] = useState("");
+  const [location, setLocation] = useState("");
 
   async function create() {
     try {
@@ -27,7 +27,7 @@ function CreatePost() {
               title,
               description,
               price,
-              deliver,
+              location,
             },
           }),
         }
@@ -90,13 +90,13 @@ function CreatePost() {
           <label className={style.label}>
             <TextField
               onChange={(e) => {
-                setDeliver(e.target.value);
+                setLocation(e.target.value);
               }}
               className={style.input4}
               required
               id="outlined-required"
-              label="Will Deliver"
-              value={deliver}
+              label="Location"
+              value={location}
             />
           </label>
           <Link to="/posts" style={{textDecoration: 'none'}}>

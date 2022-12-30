@@ -23,6 +23,8 @@ function Main() {
   const [singlePost, setSinglePost] = useState(false);
   const [edit, setEdit] = useState(false);
   const [messageContent, setMessageContent] = useState("");
+  const [reply, setReply] = useState(false);
+  
 
   return (
     <BrowserRouter>
@@ -61,6 +63,7 @@ function Main() {
               setLocation={setLocation}
               messageContent={messageContent}
               setMessageContent={setMessageContent}
+              reply={reply}
             />
           }
         ></Route>
@@ -85,6 +88,8 @@ function Main() {
               setSinglePost={setSinglePost}
               setMessageContent={setMessageContent}
               messageContent={messageContent}
+              reply={reply}
+              setReply={setReply}
             />
           }
         ></Route>

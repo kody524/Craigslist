@@ -140,6 +140,7 @@ export async function fetchMe(token, setPosts, setMessages) {
     const response = await data.json();
 
     setPosts(response.data.posts);
+    console.log(response.data.posts)
     setMessages(response.data.messages);
     console.log(response.data.messages)
   } catch (e) {
