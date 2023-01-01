@@ -23,13 +23,14 @@ function Profile({
   messageContent,
   setMessageContent,
   ID,
-  reply,
-  setReply
+  setReply,
+  reply
 }) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
   const [messages, setMessages] = useState([]);
-
+  console.log(posts.length)
+  let postcount=0;
 
   useEffect(() => {
     fetchMe(token,setPosts,setMessages);
@@ -56,15 +57,31 @@ function Profile({
           messageContent={messageContent}
           setMessageContent={setMessageContent}
           reply={reply}
+          setReply={setReply}
+          
         />
       ) : (
         <>
           <Navbar />
 
           <div>
-            <h1 className={styles.header}>Profile</h1>
-            <h1 className={styles.header}>My Posts</h1>
-            {posts.map((post) => {
+           
+            
+           
+           
+           
+           <h1 className={styles.header}>My Posts</h1>
+
+            {
+            posts.length < 1 ? <h2>No posts</h2>: 
+            posts.map((post) => {
+             if(!post.active){
+              postcount++
+             }if(postcount===posts.length){
+              return (
+                <h2>No posts</h2>
+              )
+             }
               if (post.active) {
                 return (
                   <>
@@ -110,13 +127,23 @@ function Profile({
               }
             })}
 
-            <h1 className={styles.header}>Outgoing Messages</h1>
-            {messages.map((message) => {
+            <h1 className={styles.header}>Messages</h1>
+            
+            {
+            messages.length < 1 ? <h2>No Messages</h2>:
+            messages.map((message) => {
+              
+              if(messages.length < 1){
+                return(
+                  <h1>No Messages</h1>
+                )
+              }
               if (message.fromUser.username === "ass") {
                 return (
                   <>
                     <section key={message._id} className={styles.body}>
                       <div className={styles.container}>
+                        <h1 className={styles.inout}>Outgoing Message</h1>
                         <h2>About:{message.post.title}</h2>
                         <h3>Message:{message.content}</h3>
                       </div>
@@ -124,16 +151,16 @@ function Profile({
                   </>
                 );
               }
-            })}
-            <h1 className={styles.header}>Incoming Messages</h1>
-            {
+            })}{
               messages.map((message)=>{
+            
                 if(message.fromUser.username !== "ass"){
                       return (
                   <>
                   
                     <section key={message.post._id} className={styles.body}>
                       <div className={styles.container}>
+                        <h1 className={styles.inout}>Incoming Message</h1>
                         <h1>From User:{message.fromUser.username}</h1>
                         <h2>About:{message.post.title}</h2>
                         <h3>Message:{message.content}</h3>
@@ -142,8 +169,8 @@ function Profile({
                         className={styles.btns}
                         variant="contained"
                           onClick={() => {
-                            setReply(true)
                             setSinglePost(true);
+                            setReply(true)
                             setKey(message.post._id)
                             setTitle(message.post.title);
                             setDescription(message.content)
@@ -161,6 +188,7 @@ function Profile({
             }
           </div>
         </>
+
       )}
     </>
   );

@@ -1,8 +1,9 @@
 import TextField from "@mui/material/TextField";
 import React, { useState } from "react";
 import styles from "./SinglePost.module.css";
-import { createMessage } from "./allFucntions";
+import { createMessage, fetchMe, fetchPosts } from "./allFucntions";
 import Button from "@mui/material/Button";
+
 function SinglePost({
   title,
   price,
@@ -76,6 +77,7 @@ function SinglePost({
         variant="contained"
           onClick={() => {
             setSingle(false);
+          
           }}
         >
           back

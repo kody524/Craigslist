@@ -1,12 +1,16 @@
+
+
 .body {
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 10px;
-  background-color: lightgrey;
+  
+  
 }
 .header{
-   background-color: lightgrey;
+  
+   padding: 20px;
 }
 .container {
   color: #FBFAF5;

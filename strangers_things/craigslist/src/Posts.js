@@ -7,6 +7,7 @@ import SinglePost from "./SinglePost";
 import EditPost from "./EditPost";
 import { fetchPosts } from "./allFucntions";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 
 function Posts({
   ID,
@@ -29,11 +30,21 @@ function Posts({
 }) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
-
- 
-
+  const[filtered,setFiltered]=useState([])
+  const[value,setValue]=useState('')
+ function handleFilter(){
+   
+    const filtered = posts.filter((post)=>{
+      return post.title.toLowerCase().includes(value)
+    })
+    setFiltered(filtered)
+ }
   useEffect(() => {
-    fetchPosts(token,setPosts);
+    if(posts.length < 1 ){
+    fetchPosts(token,setPosts)
+    }
+    
+     
   }, []);
   return (
     <>
@@ -62,6 +73,12 @@ function Posts({
       ) : (
         <div>
           <h1 className={styles.header}>Posts</h1>
+          <div className={styles.search_container}>
+          <TextField  variant="outlined" onChange={(e)=>{
+            handleFilter()
+            setValue(e.target.value)
+          }}/>
+          </div>
           <div className={styles.createcontainer}>
             <Link to="/create" style={{textDecoration: 'none'}}>
               <Button variant="contained" className={styles.btns}>
