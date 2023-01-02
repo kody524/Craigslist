@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
@@ -9,7 +9,7 @@ import Posts from "./Posts";
 import CreatePost from "./CreatePost";
 import Profile from "./Profile";
 import Logout from "./Logout";
-
+import { NotLoggedIn } from "./NotLoggedIn";
 
 function Main() {
   const [username, setUsername] = useState("");
@@ -24,7 +24,6 @@ function Main() {
   const [edit, setEdit] = useState(false);
   const [messageContent, setMessageContent] = useState("");
   const [reply, setReply] = useState(false);
-  
 
   return (
     <BrowserRouter>
@@ -90,6 +89,25 @@ function Main() {
               messageContent={messageContent}
               reply={reply}
               setReply={setReply}
+            />
+          }
+        ></Route>
+        <Route
+          path="/checkit"
+          element={
+            <NotLoggedIn
+              ID={ID}
+              title={title}
+              price={price}
+              description={description}
+              location={location}
+              singlePost={singlePost}
+              setSinglePost={setSinglePost}
+              setID={setID}
+              setTitle={setTitle}
+              setPrice={setPrice}
+              setDescription={setDescription}
+              setLocation={setLocation}
             />
           }
         ></Route>

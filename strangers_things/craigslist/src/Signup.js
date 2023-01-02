@@ -10,9 +10,8 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
 
-
   function handleSubmit() {
-    PostUser(username,password,setSuccess);
+    PostUser(username, password, setSuccess);
   }
 
   return (
@@ -36,12 +35,12 @@ function Signup() {
         <label className={styles.label}>
           Choose Password &nbsp;
           <TextField
+            type="password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}
             className={styles.input2}
             required
-            id="outlined-required"
             label="Required"
             value={password}
           />
@@ -53,11 +52,14 @@ function Signup() {
         >
           Sign Up
         </Button>
-        {success ? (
-          <Link className={styles.loginbtn} to="/" style={{textDecoration: 'none'}}>
-            <Button>Go Login</Button>
-          </Link>
-        ) : null}
+
+        <Link
+          className={styles.loginbtn}
+          to="/"
+          style={{ textDecoration: "none" }}
+        >
+          <Button>Go Login</Button>
+        </Link>
       </div>
     </div>
   );

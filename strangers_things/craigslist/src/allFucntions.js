@@ -142,7 +142,6 @@ export async function fetchMe(token, setPosts, setMessages) {
     setPosts(response.data.posts);
 
     setMessages(response.data.messages);
-   
   } catch (e) {
     console.log(e);
   }
@@ -166,13 +165,44 @@ export async function PostUser(username, password, setSuccess) {
     );
 
     const json = await response.json();
-    const TOKENKEY = json.data.token;
     console.log(json);
     if (json.success) {
+      alert(json.data.message);
       setSuccess(true);
-      localStorage.setItem("key", TOKENKEY);
     } else {
       alert(json.error.message);
+    }
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+export async function create(token, title, description, price, location) {
+  try {
+    const data = await fetch(
+      "https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          post: {
+            title,
+            description,
+            price,
+            location,
+          },
+        }),
+      }
+    );
+    const response = await data.json();
+    console.log(response);
+    if (response.success) {
+      alert("Post Created");
+    } else {
+      alert("Failed to make Post Try again!");
     }
   } catch (e) {
     console.log(e);

@@ -26,25 +26,23 @@ function Posts({
   setID,
   messageContent,
   setMessageContent,
-  reply
+  reply,
 }) {
   const token = localStorage.getItem("token");
   const [posts, setPosts] = useState([]);
-  const[filtered,setFiltered]=useState([])
-  const[value,setValue]=useState('')
- function handleFilter(){
-   
-    const filtered = posts.filter((post)=>{
-      return post.title.toLowerCase().includes(value)
-    })
-    setFiltered(filtered)
- }
+  const [value, setValue] = useState("");
+  function handleFilter() {
+    const filtered = posts.filter((post) => {
+      let filterTitle = post.title;
+      let lower = filterTitle.toLowerCase();
+      return lower.includes(value.toLowerCase());
+    });
+    setPosts(filtered);
+  }
   useEffect(() => {
-    if(posts.length < 1 ){
-    fetchPosts(token,setPosts)
+    if (posts.length < 1) {
+      fetchPosts(token, setPosts);
     }
-    
-     
   }, []);
   return (
     <>
@@ -74,13 +72,17 @@ function Posts({
         <div>
           <h1 className={styles.header}>Posts</h1>
           <div className={styles.search_container}>
-          <TextField  variant="outlined" onChange={(e)=>{
-            handleFilter()
-            setValue(e.target.value)
-          }}/>
+            <TextField
+              placeholder="Search for a Post..."
+              variant="outlined"
+              onChange={(e) => {
+                handleFilter();
+                setValue(e.target.value);
+              }}
+            />
           </div>
           <div className={styles.createcontainer}>
-            <Link to="/create" style={{textDecoration: 'none'}}>
+            <Link to="/create" style={{ textDecoration: "none" }}>
               <Button variant="contained" className={styles.btns}>
                 Create Post
               </Button>
@@ -99,31 +101,31 @@ function Posts({
                       Location:{post.location}
                     </h6>
                     <div className={styles.btnscontainer}>
-                    <span>
-                      <Button 
-                      className={styles.btns}
-                      variant="contained"
-                        onClick={() => {
-                          setID(post._id);
-                          setEdit(true);
-                          setTitle(post.title);
-                          setDescription(post.description);
-                          setPrice(post.price);
-                          setLocation(post.location);
-                        }}
-                      >
-                        Edit
-                      </Button>
-                      <Button
-                      variant="contained"
-                      className={styles.btns}
-                        onClick={() => {
-                          deletePost(token, post._id);
-                        }}
-                      >
-                        Delete
-                      </Button>
-                    </span>
+                      <span>
+                        <Button
+                          className={styles.btns}
+                          variant="contained"
+                          onClick={() => {
+                            setID(post._id);
+                            setEdit(true);
+                            setTitle(post.title);
+                            setDescription(post.description);
+                            setPrice(post.price);
+                            setLocation(post.location);
+                          }}
+                        >
+                          Edit
+                        </Button>
+                        <Button
+                          variant="contained"
+                          className={styles.btns}
+                          onClick={() => {
+                            deletePost(token, post._id);
+                          }}
+                        >
+                          Delete
+                        </Button>
+                      </span>
                     </div>
                   </div>
                 </section>
@@ -140,20 +142,20 @@ function Posts({
                       Location:{post.location}
                     </h6>
                     <div className={styles.btnscontainer}>
-                    <Button
-                    variant="contained"
-                      className={styles.btns}
-                      onClick={() => {
-                        setSinglePost(true);
-                        setTitle(post.title);
-                        setDescription(post.description);
-                        setPrice(post.price);
-                        setLocation(post.location);
-                        setID(post._id);
-                      }}
-                    >
-                      View
-                    </Button>
+                      <Button
+                        variant="contained"
+                        className={styles.btns}
+                        onClick={() => {
+                          setSinglePost(true);
+                          setTitle(post.title);
+                          setDescription(post.description);
+                          setPrice(post.price);
+                          setLocation(post.location);
+                          setID(post._id);
+                        }}
+                      >
+                        View
+                      </Button>
                     </div>
                   </div>
                 </section>

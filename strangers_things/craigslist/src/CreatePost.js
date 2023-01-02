@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import style from "./CreatePost.module.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
+import { create } from "./allFucntions";
 
 function CreatePost() {
   const token = localStorage.getItem("token") || "N/A";
@@ -11,38 +12,6 @@ function CreatePost() {
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
   const [location, setLocation] = useState("");
-
-  async function create() {
-    try {
-      const data = await fetch(
-        "https://strangers-things.herokuapp.com/api/2209-ftb-et-web-pt/posts",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
-            post: {
-              title,
-              description,
-              price,
-              location,
-            },
-          }),
-        }
-      );
-      const response = await data.json();
-      console.log(response);
-      if (response.success) {
-        alert("Post Created");
-      } else {
-        alert("Failed to make Post Try again!");
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   return (
     <>
@@ -99,10 +68,10 @@ function CreatePost() {
               value={location}
             />
           </label>
-          <Link to="/posts" style={{textDecoration: 'none'}}>
+          <Link to="/posts" style={{ textDecoration: "none" }}>
             <Button
               onClick={() => {
-                create();
+                create(token, title, description, price, location);
               }}
               variant="contained"
               className={style.btn}

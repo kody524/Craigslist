@@ -1,10 +1,8 @@
-
 import styles from "./Login.module.css";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import { fetchLogin } from "./allFucntions";
 import { Link, Navigate } from "react-router-dom";
-
 
 function Login({
   success,
@@ -14,8 +12,6 @@ function Login({
   setUsername,
   setPassword,
 }) {
-
-
   return (
     <>
       {success ? (
@@ -41,26 +37,37 @@ function Login({
             <label className={styles.label}>
               Password &nbsp;
               <TextField
+                type="password"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
                 className={styles.input2}
                 required
-                id="outlined-required"
                 label="Required"
                 value={password}
               />
             </label>
             <Button
               onClick={() => {
-                fetchLogin(username,password,setSuccess);
+                fetchLogin(username, password, setSuccess);
               }}
               variant="contained"
               className={styles.btn}
             >
               Submit
             </Button>
-            <Link to="/signup" className={styles.link} style={{textDecoration: 'none'}}>
+            <Link
+              to="/checkit"
+              className={styles.link}
+              style={{ textDecoration: "none" }}
+            >
+              Check the Site before you Sign Up!
+            </Link>
+            <Link
+              to="/signup"
+              className={styles.link}
+              style={{ textDecoration: "none" }}
+            >
               Sign Up!
             </Link>
           </div>
