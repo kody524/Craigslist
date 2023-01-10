@@ -20,8 +20,3 @@ async function createUsers({username, password}){
     }
 }
 
-module.exports = {
-    client,
-    getAllUsers,
-    createUsers,
-}
